@@ -5,6 +5,15 @@ public class Painvi {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
+	System.out.println("Enter the number of lines to be entered: ");
+        int lines = input.nextInt();
+        input.nextLine();
+
+        for (int i = 1; i <= lines; i++) {
+            System.out.println("\n" + "Enter String #" + i + ": ");
+            /*input.nextLine();*/
+            /*String lines = input.nextLine();*/
+
         String str1 = input.nextLine();
         StringTokenizer stoke = new StringTokenizer(str1, " ");
 
@@ -18,29 +27,25 @@ public class Painvi {
 
 
             switch (Charac) {
-                case "A": case "B": case "C": case "D": case "E":
-                case "F": case "G": case "H": case "I": case "J":
-                case "K": case "L": case "M": case "N": case "O":
-                case "P": case "Q": case "R": case "S": case "T":
-                case "U": case "V": case "W": case "X": case "Y": case "Z":
+                case "BEGIN": 
+	        	case "END": 
+                case "INTEG": 
+                case "REAL": 
+                case "INPUT": 
+                case "WRITE": 
                     System.out.println("TOKEN#" + ++count + " " + Charac + TOKENA);
                     break;
-                case "a": case "b": case "c": case "d": case "e":
-                case "f": case "g": case "h": case "i": case "j":
-                case "k": case "l": case "m": case "n": case "o":
-                case "p": case "q": case "r": case "s": case "t":
-                case "u": case "v": case "w": case "x": case "y": case "z":
+
+                case "num": case "numm": case "nummm": 
+                case "summation": case "multi":
                     System.out.println("TOKEN#" + ++count + " " + Charac + TOKENB);
                     break;
-                case "+":
-                case "/":
-                case "*":
-                case "-":
+
+                case "+":	case "/":	case "*":	case "-":   
                     System.out.println("TOKEN#" + ++count + " " + Charac + TOKENC);
                     break; 
-                case "=":
-                case "&":
-                case ";":
+
+                case "=":	case "&":	case ";":
                     System.out.println("TOKEN#" + ++count + " " + Charac + TOKEND);
                     break;     
             }
@@ -48,3 +53,4 @@ public class Painvi {
             System.out.print("Total number of Tokens: " + count);
         }
     }
+}
