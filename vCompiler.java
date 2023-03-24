@@ -130,6 +130,11 @@ public class vCompiler {
                     //Semi colon error handling
 
                     //Numbers error handling
+                     else if(input.equals("[0-9]")){
+                        if (uniqueKeywordsReference.contains(input)){
+                            System.out.println("#" + (j+1) + " SYNTAX ERROR- numbers are not allowed in this language");
+                        }
+                    }    
                 }
             }
         }
