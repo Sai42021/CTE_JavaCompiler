@@ -1,36 +1,36 @@
-import java.util.*;
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
 public class targetMachineCode {
     public static void main(String[] args) {
-        Scanner In = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
         System.out.println("Enter number of strings: ");
-        int strNums = In.nextInt();
-        In.nextLine();
+        int strNums = in.nextInt();
+        in.nextLine();
 
         String str = null;
-
         int i = 0;
 
-        // token count
-        int count = 0;
-
-        // Strings loop
+        /* Strings loop
         for (i = 1; i <= strNums; i++) {
-            System.out.println("\n" + "Enter string #" + i + ":");
-            str = In.nextLine();
+            System.out.println("\nEnter string #" + i + ":");
+            str = in.nextLine();*/
 
+        System.out.println("Enter a letter:");
+        String letter = in.nextLine();
 
-                String letter = In.nextLine();
-
-                        if (letter.length() == 1 && Character.isLetter(letter.charAt(0))) {
-                            char c = letter.charAt(0);
-                            if (Character.isUpperCase(c) || Character.isLowerCase(c)) {
-                                String binary = Integer.toBinaryString(c);
-                                System.out.printf(binary);
-                            }
-                        }
-                    }
-                }
+        if (letter.length() == 1 && Character.isLetter(letter.charAt(0))) {
+            char c = letter.charAt(0);
+            if (Character.isUpperCase(c) || Character.isLowerCase(c)) {
+                String binary = Integer.toBinaryString(c);
+                System.out.printf("The binary form of %s is %s.\n", letter, binary);
+            } else {
+                System.out.println("Error: input is not a letter.");
             }
+        } else {
+            System.out.println("Error: input is not a single letter.");
+        }
+    }
+
+}
