@@ -585,8 +585,9 @@ public class Main{
         // End of compilation
         System.out.println("\n" + "======END OF COMPILATION");
         System.out.println("======THE ORIGINAL INPUT STRING IS: " + str + ";\n");
-        //End of stage 5
+        //End of stage 6
     }
+    //method for optimizing
     public static void optimize(String a, String b, String c){
         //a
             String[] words = a.split(" "); // Split the input string into an array of substrings based on a space character
