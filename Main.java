@@ -2,10 +2,10 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class Main{
-        // TODO: Code Optimization
-        // TODO: Code Generation
+    // TODO: Code Optimization
+    // TODO: Code Generation
 
-        public static String  ldiv1, ldiv2, ldiv3, lmult1, lmult2, lmult3, lplus1, lplus2, lplus3, lminus1, lminus2, lminus3; // used in stage 5
+    public static String  ldiv1, ldiv2, ldiv3, lmult1, lmult2, lmult3, lplus1, lplus2, lplus3, lminus1, lminus2, lminus3; // used in stage 5
     public static void main(String[] args) {
         Scanner In = new Scanner(System.in);
 
@@ -27,30 +27,30 @@ public class Main{
 
         String str = null;
 
-          // Hash table to store all unique keywords, Identifiers, Operators, and Symbols
-          Hashtable<Integer, String> uniqueKeywordsReference = new Hashtable<>();
-          //The code adds all keywords to the hash table object, where the key is an integer and the value is a string.
-          // Keywords
-          uniqueKeywordsReference.put(0, "BEGIN");
-          uniqueKeywordsReference.put(1, "LET");
-          uniqueKeywordsReference.put(2, "INTEG");
-          uniqueKeywordsReference.put(3, "REAL");
-          uniqueKeywordsReference.put(4, "INPUT");
-          uniqueKeywordsReference.put(5, "WRITE");
-          uniqueKeywordsReference.put(6, "END");
+        // Hash table to store all unique keywords, Identifiers, Operators, and Symbols
+        Hashtable<Integer, String> uniqueKeywordsReference = new Hashtable<>();
+        //The code adds all keywords to the hash table object, where the key is an integer and the value is a string.
+        // Keywords
+        uniqueKeywordsReference.put(0, "BEGIN");
+        uniqueKeywordsReference.put(1, "LET");
+        uniqueKeywordsReference.put(2, "INTEG");
+        uniqueKeywordsReference.put(3, "REAL");
+        uniqueKeywordsReference.put(4, "INPUT");
+        uniqueKeywordsReference.put(5, "WRITE");
+        uniqueKeywordsReference.put(6, "END");
 
-          // Operators
-          uniqueKeywordsReference.put(7, "+");
-          uniqueKeywordsReference.put(8, "/");
-          uniqueKeywordsReference.put(9, "*");
-          uniqueKeywordsReference.put(10, "-");
-          uniqueKeywordsReference.put(11, "temp");
+        // Operators
+        uniqueKeywordsReference.put(7, "+");
+        uniqueKeywordsReference.put(8, "/");
+        uniqueKeywordsReference.put(9, "*");
+        uniqueKeywordsReference.put(10, "-");
+        uniqueKeywordsReference.put(11, "temp");
 
-          //Symbols
-          uniqueKeywordsReference.put(12, "=");
-          uniqueKeywordsReference.put(13, ",");
+        //Symbols
+        uniqueKeywordsReference.put(12, "=");
+        uniqueKeywordsReference.put(13, ",");
 
-         int i = 0;
+        int i = 0;
 
         // Strings loop
         for ( i = 1; i <= strNums; i++) {
@@ -69,20 +69,20 @@ public class Main{
             System.out.println("\n" + "======STAGE1: COMPILER TECHNIQUES--> LEXICAL ANALYSIS-Scanner");
             System.out.println("SYMBOL TABLE COMPRISING ATTRIBUTES AND TOKENS:");
 
-            // compare each token 
+            // compare each token
             while(tokenizer.hasMoreTokens()){
-            // initialize token string
-            String input = tokenizer.nextToken();
+                // initialize token string
+                String input = tokenizer.nextToken();
 
-              // Check if the current token is a keyword 
+                // Check if the current token is a keyword
                 if (input.equals("BEGIN") || input.equals("INTEG") || input.equals("REAL") || input.equals("LET") || input.equals("INPUT") || input.equals("WRITE") || input.equals("END")) {
                     if (uniqueKeywordsReference.contains(input)) {
                         System.out.println("TOKEN#" + ++count + " " + input + " Keyword");
                     }
                 }
-                // Check if the current token is an identifier 
+                // Check if the current token is an identifier
                 else if(input.matches("[A-Za-z]+")) {
-                        System.out.println("TOKEN#" + ++count + " " + input +  " Identifier");
+                    System.out.println("TOKEN#" + ++count + " " + input +  " Identifier");
                 }
                 // Check if the current token is an operator
                 else if(input.matches("[+\\-/\\*]")){
@@ -95,14 +95,14 @@ public class Main{
                         }
                     }
                 }
-                 // Check if the current token is a Symbol
-                 else if(input.equals("=")){
+                // Check if the current token is a Symbol
+                else if(input.equals("=")){
                     if (uniqueKeywordsReference.contains(input)) {
                         System.out.println("TOKEN#" + ++count + " " + input +  " Symbol");
                     }
                 }
-                
-                // Error handling 
+
+                // Error handling
 
                 // To handle spelling errors or undefined terms
                 boolean notvalid = false; // flag to check if input is found
@@ -112,23 +112,23 @@ public class Main{
                         break; // exit the loop if input is found
                     }
                 }
-                
+
                 if(!notvalid && !input.matches("[A-Za-z]+") && !input.matches("\\s+")){
 
-                // Semantic errors
-                // Special characters error
-                if(Pattern.matches("[\\p{P}\\p{S}]", input)) {
-                    if(!input.matches("\\s+") && !input.matches("=")){
-                        System.out.println("#" + (++count) + " SEMANTIC ERROR- symbol entered is not allowed! i.e(%,$,&,<,>$,%,!,;)");
+                    // Semantic errors
+                    // Special characters error
+                    if(Pattern.matches("[\\p{P}\\p{S}]", input)) {
+                        if(!input.matches("\\s+") && !input.matches("=")){
+                            System.out.println("#" + (++count) + " SEMANTIC ERROR- symbol entered is not allowed! i.e(%,$,&,<,>$,%,!,;)");
+                            break;
+                        }
+                    }
+
+                    else{
+                        System.out.println("#" + ++count + " SEMANTIC ERROR- input undefined!");
                         break;
                     }
-                }
-                
-                else{
-                    System.out.println("#" + ++count + " SEMANTIC ERROR- input undefined!");
-                    break;
-                }
-        
+
                 }
 
                 // to initialize prevoius token disregarding white space
@@ -141,7 +141,7 @@ public class Main{
             System.out.println("TOTAL NUMBER OF TOKENS FOR STRING#" + i + ":" + count);
 
             // Stage 2 of compiler
-            
+
             System.out.println("\n" + "======STAGE2: COMPILER TECHNIQUES--> SYNTAX ANALYSIS-Parser");
             System.out.println("GET A DERIVATION FOR : " + str + "\n");
 
@@ -228,14 +228,14 @@ public class Main{
 
             //digit derivation
             String strE1 = " ", strE2 = " ", strE3 = " ", strE4 = " ", strE5 = " ", strE6 = " ", strE7 = " ",
-            strE8 = " ", strE9 = " ", strE10 = " ", strE11 = " ", strE12 = " ", strE13 = " ", strE14 = " ",
-            strE15 = " ", strE16 = " ", strE17 = " ", strE18 = " ", strE19 = " ", strE20 = " ", strE21 = " ",
-            strE22 = " ", strE23 = " ", strE24 = " ", strE25 = " ", strE26 = " ";
+                    strE8 = " ", strE9 = " ", strE10 = " ", strE11 = " ", strE12 = " ", strE13 = " ", strE14 = " ",
+                    strE15 = " ", strE16 = " ", strE17 = " ", strE18 = " ", strE19 = " ", strE20 = " ", strE21 = " ",
+                    strE22 = " ", strE23 = " ", strE24 = " ", strE25 = " ", strE26 = " ";
 
             String strnum1 = " ", strnum2 = " ", strnum3 = " ", strnum4 = " ", strnum5 = " ", strnum6 = " ", strnum7 = " ",
-            strnum8 = " ", strnum9 = " ", strnum10 = " ", strnum11 = " ", strnum12 = " ", strnum13 = " ", strnum14 = " ",
-            strnum15 = " ", strnum16 = " ", strnum17 = " ", strnum18 = " ", strnum19 = " ", strnum20 = " ", strnum21 = " ",
-            strnum22 = " ", strnum23 = " ", strnum24 = " ", strnum25 = " ", strnum26 = " ";            
+                    strnum8 = " ", strnum9 = " ", strnum10 = " ", strnum11 = " ", strnum12 = " ", strnum13 = " ", strnum14 = " ",
+                    strnum15 = " ", strnum16 = " ", strnum17 = " ", strnum18 = " ", strnum19 = " ", strnum20 = " ", strnum21 = " ",
+                    strnum22 = " ", strnum23 = " ", strnum24 = " ", strnum25 = " ", strnum26 = " ";
 
             strE1 = strz.replace("E1", "digit1");
             if(strE1.contains("digit1")){
@@ -270,97 +270,97 @@ public class Main{
             strE7 = strE6.replace("E7", "digit7");
             if(strE7.contains("digit7")){
                 System.out.println(strE7);
-            }   
+            }
 
             strE8 = strE7.replace("E8", "digit8");
             if(strE8.contains("digit8")){
                 System.out.println(strE8);
-            }   
+            }
 
             strE9 = strE8.replace("E9", "digit9");
             if(strE9.contains("digit9")){
                 System.out.println(strE9);
-            }   
+            }
 
             strE10 = strE9.replace("E10", "digit10");
             if(strE10.contains("digit10")){
-                System.out.println(strE10); 
-            }  
+                System.out.println(strE10);
+            }
 
             strE11 = strE10.replace("E11", "digit11");
             if(strE11.contains("digit11")){
-                System.out.println(strE11);  
-            } 
+                System.out.println(strE11);
+            }
 
             strE12 = strE11.replace("E12", "digit12");
             if(strE12.contains("digit12")){
-                System.out.println(strE12);  
-            } 
+                System.out.println(strE12);
+            }
 
             strE13 = strE12.replace("E13", "digit13");
             if(strE13.contains("digit13")){
-                System.out.println(strE13);  
-            } 
+                System.out.println(strE13);
+            }
 
             strE14 = strE13.replace("E14", "digit14");
             if(strE14.contains("digit14")){
                 System.out.println(strE14);
-            }   
+            }
 
             strE15 = strE14.replace("E15", "digit15");
             if(strE15.contains("digit15")){
-                System.out.println(strE15); 
-            }  
+                System.out.println(strE15);
+            }
 
             strE16 = strE15.replace("E16", "digit16");
             if(strE16.contains("digit16")){
-                System.out.println(strE16); 
-            }  
+                System.out.println(strE16);
+            }
 
             strE17 = strE16.replace("E17", "digit17");
             if(strE17.contains("digit17")){
-                System.out.println(strE17); 
-            }  
+                System.out.println(strE17);
+            }
 
             strE18 = strE17.replace("E18", "digit18");
             if(strE18.contains("digit18")){
-                System.out.println(strE18);   
+                System.out.println(strE18);
             }
 
             strE19 = strE18.replace("E19", "digit19");
             if(strE19.contains("digit19")){
-                System.out.println(strE19);   
+                System.out.println(strE19);
             }
 
             strE20 = strE19.replace("E20", "digit20");
             if(strE20.contains("digit20")){
-                System.out.println(strE20);  
-            } 
+                System.out.println(strE20);
+            }
 
             strE21 = strE20.replace("E21", "digit21");
             if(strE21.contains("digit21")){
-                System.out.println(strE21);   
+                System.out.println(strE21);
             }
 
             strE22 = strE21.replace("E22", "digit22");
             if(strE22.contains("digit22")){
-                System.out.println(strE22);   
+                System.out.println(strE22);
             }
 
             strE23 = strE22.replace("E23", "digit23");
             if(strE23.contains("digit23")){
-                System.out.println(strE23);  
-            } 
+                System.out.println(strE23);
+            }
 
             strE24 = strE23.replace("E24", "digit24");
             if(strE24.contains("digit24")){
-                System.out.println(strE24);   
+                System.out.println(strE24);
             }
 
             strE25 = strE24.replace("E25", "digit25");
             if(strE25.contains("digit25")){
-                System.out.println(strE25);  
-            } 
+                System.out.println(strE25);
+            }
 
             strE26 = strE25.replace("E26", "digit26");
             if(strE26.contains("digit26")){
@@ -368,8 +368,8 @@ public class Main{
             }//End of digit derivation
 
 
-        // Specific number derivation
-        strnum1 = strE26.replace("digit1", "1");
+            // Specific number derivation
+            strnum1 = strE26.replace("digit1", "1");
             if(strnum1.contains("1")){
                 System.out.println(strnum1);
             }
@@ -402,103 +402,103 @@ public class Main{
             strnum7 = strnum6.replace("digit7", "7");
             if(strnum7.contains("7")){
                 System.out.println(strnum7);
-            }   
+            }
 
             strnum8 = strnum7.replace("digit8", "8");
             if(strnum8.contains("8")){
                 System.out.println(strnum8);
-            }   
+            }
 
             strnum9 = strnum8.replace("digit9", "9");
             if(strnum9.contains("9")){
                 System.out.println(strnum9);
-            }   
+            }
 
             strnum10 = strnum9.replace("digit10", "10");
             if(strnum10.contains("10")){
-                System.out.println(strnum10); 
-            }  
+                System.out.println(strnum10);
+            }
 
             strnum11 = strnum10.replace("digit11", "11");
             if(strnum11.contains("11")){
-                System.out.println(strnum11);  
-            } 
+                System.out.println(strnum11);
+            }
 
             strnum12 = strnum11.replace("digit12", "12");
             if(strnum12.contains("12")){
-                System.out.println(strnum12);  
-            } 
+                System.out.println(strnum12);
+            }
 
             strnum13 = strnum12.replace("digit13", "13");
             if(strnum13.contains("13")){
-                System.out.println(strnum13);  
-            } 
+                System.out.println(strnum13);
+            }
 
             strnum14 = strnum13.replace("digit14", "14");
             if(strnum14.contains("14")){
                 System.out.println(strnum14);
-            }   
+            }
 
             strnum15 = strnum14.replace("digit15", "15");
             if(strnum15.contains("15")){
-                System.out.println(strnum15); 
-            }  
+                System.out.println(strnum15);
+            }
 
             strnum16 = strnum15.replace("digit16", "16");
             if(strnum16.contains("16")){
-                System.out.println(strnum16); 
-            }  
+                System.out.println(strnum16);
+            }
 
             strnum17 = strnum16.replace("digit17", "17");
             if(strnum17.contains("17")){
-                System.out.println(strnum17); 
-            }  
+                System.out.println(strnum17);
+            }
 
             strnum18 = strnum17.replace("digit18", "18");
             if(strnum18.contains("18")){
-                System.out.println(strnum18);   
+                System.out.println(strnum18);
             }
 
             strnum19 = strnum18.replace("digit19", "19");
             if(strnum19.contains("19")){
-                System.out.println(strnum19);   
+                System.out.println(strnum19);
             }
 
             strnum20 = strnum19.replace("digit20", "20");
             if(strnum20.contains("20")){
-                System.out.println(strnum20);  
-            } 
+                System.out.println(strnum20);
+            }
 
             strnum21 = strnum20.replace("digit21", "21");
             if(strnum21.contains("21")){
-                System.out.println(strnum21);   
+                System.out.println(strnum21);
             }
 
             strnum22 = strnum21.replace("digit22", "22");
             if(strnum22.contains("22")){
-                System.out.println(strnum22);   
+                System.out.println(strnum22);
             }
 
             strnum23 = strnum22.replace("digit23", "23");
             if(strnum23.contains("23")){
-                System.out.println(strnum23);  
-            } 
+                System.out.println(strnum23);
+            }
 
             strnum24 = strnum23.replace("digit24", "24");
             if(strnum24.contains("24")){
-                System.out.println(strnum24);   
+                System.out.println(strnum24);
             }
 
             strnum25 = strnum24.replace("digit25", "25");
             if(strnum25.contains("25")){
-                System.out.println(strnum25);  
-            } 
+                System.out.println(strnum25);
+            }
 
             strnum26 = strnum25.replace("digit26", "26");
             if(strnum26.contains("26")){
                 System.out.println(strnum26);
             }//End of Specific number derivation
-    
+
             // Stage 3 of compiler
             System.out.println("\n" + "======STAGE3: COMPILER TECHNIQUES--> SEMANTIC ANALYSIS");
             System.out.println("CONCLUSION-->This expression: " + str + " is Syntactically and Semantically correct" + "\n");
@@ -523,26 +523,35 @@ public class Main{
 
             System.out.println("CONCLUSION-->The expression was correctly generated in ICR" + "\n");
 
-             // Stage 5 of compiler
+            // Stage 5 of compiler
             System.out.println("======STAGE5: COMPILER TECHNIQUES--> CODE GENERATION");
-
+             ArrayList<String>deriv6 = new ArrayList<>();
             //Division
             if(str.contains("/")){
                 ldiv1="LDA"+" "+ tokenstge4[2];
                 ldiv2 = "DIV"+ " "+ tokenstge4[4];
                 ldiv3 = "STR " + "T1";
+                deriv6.add(ldiv1);
+                deriv6.add(ldiv2);
+                deriv6.add(ldiv3);
             }
             //Multiplication
             if(str.contains("*")){
                 lmult1="LDA"+" "+ tokenstge4[8];
                 lmult2 = "MUL"+ " "+ tokenstge4[10];
-                lmult3 = "STR " + "T3";
+                lmult3 = "STR " + "T2";
+                deriv6.add(lmult1);
+                deriv6.add(lmult2);
+                deriv6.add(lmult3);
             }
             //Addition
             if(str.contains("+")){
                 lplus1="LDA"+" "+ tokenstge4[6];
                 lplus2 = "ADD"+ " "+ tokenstge4[8];
-                lplus3 = "STR " + "T2";
+                lplus3 = "STR " + "T3";
+                deriv6.add(lplus1);
+                deriv6.add(lplus2);
+                deriv6.add(lplus3);
             }
 
             //Subtraction
@@ -550,6 +559,9 @@ public class Main{
                 lminus1="LDA"+" "+ tokenstge4[6];
                 lminus2 = "SUB"+ " "+ tokenstge4[8];
                 lminus3 = "STR " + "T4";
+                deriv6.add(lminus1);
+                deriv6.add(lminus2);
+                deriv6.add(lminus3);
             }
             if (str.contains("/")) System.out.println(ldiv1);System.out.println(ldiv2);System.out.println(ldiv3);
             if (str.contains("*")) System.out.println(lmult1);System.out.println(lmult2);System.out.println(lmult3);
@@ -560,10 +572,47 @@ public class Main{
 
             // End of compilation
             System.out.println("\n" + "======END OF COMPILATION");
-            System.out.println("======THE ORIGINAL INPUT STRING IS: " + str + ";");
+            System.out.println("======THE ORIGINAL INPUT STRING IS: " + str + ";\n");
 
 
+            //Stage 6: code optimization
+            System.out.println("======STAGE6: COMPILER TECHNIQUES--> CODE GENERATION");
+            for (int q=0;q<=deriv6.size() &&q <= deriv6.size() - 3;q++){
+                optimize(deriv6.get(q),deriv6.get(q+1), deriv6.get(q+2));
             }
 
         }
+        // End of compilation
+        System.out.println("\n" + "======END OF COMPILATION");
+        System.out.println("======THE ORIGINAL INPUT STRING IS: " + str + ";\n");
+
+
+    }
+    public static void optimize(String a, String b, String c){
+        //a
+            String[] words = a.split(" "); // Split the input string into an array of substrings based on a space character
+           // String lda = words[0]; // Get the first word from the array
+            String letter = words[1]; // Get the second word from the array
+        //b
+        String[] bWords = b.split(" ");
+        String div = bWords[0];
+        String divLetter = bWords[1];
+
+        //c
+
+        String[] cWords = c.split(" ");
+       // String str = cWords[0];
+        String strLetter = cWords[1];
+
+        //code optimization
+   if(div.contains("DIV")){
+    System.out.println(div+" "+strLetter+", "+ divLetter+", "+letter);
+}else if(div.contains("MUL")){
+    System.out.println(div+" "+strLetter+", "+ letter+", "+divLetter);
+}else if (div.contains("ADD")){
+       System.out.println(div+" "+strLetter+", "+ letter+", "+divLetter);
+   }else if (div.contains("SUB")){
+       System.out.println(div+" "+strLetter+", "+letter+", "+divLetter);
+   }
+    }
 }
