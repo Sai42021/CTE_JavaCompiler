@@ -576,7 +576,7 @@ public class Main{
 
 
             //Stage 6: code optimization
-            System.out.println("======STAGE6: COMPILER TECHNIQUES--> CODE GENERATION");
+            System.out.println("======STAGE6: COMPILER TECHNIQUES--> CODE OPTIMIZATION");
             for (int q=0;q<=deriv6.size() &&q <= deriv6.size() - 3;q++){
                 optimize(deriv6.get(q),deriv6.get(q+1), deriv6.get(q+2));
             }
