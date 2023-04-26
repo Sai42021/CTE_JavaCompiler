@@ -585,8 +585,7 @@ public class Main{
         // End of compilation
         System.out.println("\n" + "======END OF COMPILATION");
         System.out.println("======THE ORIGINAL INPUT STRING IS: " + str + ";\n");
-
-
+        //End of stage 5
     }
     public static void optimize(String a, String b, String c){
         //a
