@@ -576,6 +576,27 @@ public class Main{
                 optimize(deriv6.get(q),deriv6.get(q+1), deriv6.get(q+2));
             } 
             //End of stage 6
+            
+            // Stage 7
+            System.out.println("\n" + "======STAGE7: COMPILER TECHNIQUES--> TARGET MACHINE CODE");
+
+            for (int iForSeven = 0; iForSeven < str.length(); iForSeven++) {
+                char c = str.charAt(iForSeven);
+                if (Character.isLetter(c)) {
+                 String binary = Integer.toBinaryString(c);
+                System.out.printf(binary + "\n");
+
+                if(str.contains("DIV")){
+                    System.out.println("01000100" + "\n");
+                }else if(str.contains("MUL")){
+                    System.out.println("01001101" + "\n");
+                }else if (str.contains("ADD" + "\n")){
+                    System.out.println("01000001" + "\n");
+                }else if (str.contains("SUB" + "\n")){
+                    System.out.println("01010011" + "\n");
+                }
+            } 
+        } // END of Stage 7
 
         }
         // End of compilation
@@ -603,11 +624,11 @@ public class Main{
         //code optimization
    if(div.contains("DIV")){
     System.out.println(div+" "+strLetter+", "+ divLetter+", "+letter);
-}else if(div.contains("MUL")){
+    }else if(div.contains("MUL")){
     System.out.println(div+" "+strLetter+", "+ letter+", "+divLetter);
-}else if (div.contains("ADD")){
+    }else if (div.contains("ADD")){
        System.out.println(div+" "+strLetter+", "+ letter+", "+divLetter);
-   }else if (div.contains("SUB")){
+    }else if (div.contains("SUB")){
        System.out.println(div+" "+strLetter+", "+letter+", "+divLetter);
    }
     }
